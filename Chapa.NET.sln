@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.32804.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapa.NET", "Chapa.NET\Chapa.NET.csproj", "{229F0C9E-9D07-443F-9EE2-096331B334C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapa.NET.Tests", "Chapa.NET.Tests\Chapa.NET.Tests.csproj", "{16E0D3A1-F82E-483E-A79C-BDB5F16A004F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{229F0C9E-9D07-443F-9EE2-096331B334C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{229F0C9E-9D07-443F-9EE2-096331B334C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{229F0C9E-9D07-443F-9EE2-096331B334C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16E0D3A1-F82E-483E-A79C-BDB5F16A004F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16E0D3A1-F82E-483E-A79C-BDB5F16A004F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16E0D3A1-F82E-483E-A79C-BDB5F16A004F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16E0D3A1-F82E-483E-A79C-BDB5F16A004F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

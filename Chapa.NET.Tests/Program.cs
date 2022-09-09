@@ -13,8 +13,8 @@ var Request = new ChapaRequest(amount: 30.52, email: "abebebikila@gmail.com", fi
 //Process the request and get a response asynchronously
 var Result = await chapa.Request(Request);
 
-//Print out the message
-Console.WriteLine(Result.Message);
+//Print out the checkout link
+Console.WriteLine(Result.Urls?.CheckoutUrl);
 
 //Wait For 1min
 Thread.Sleep(TimeSpan.FromMinutes(1));

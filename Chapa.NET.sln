@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.32804.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapa.NET", "Chapa.NET\Chapa.NET.csproj", "{229F0C9E-9D07-443F-9EE2-096331B334C2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{229F0C9E-9D07-443F-9EE2-096331B334C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{229F0C9E-9D07-443F-9EE2-096331B334C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{229F0C9E-9D07-443F-9EE2-096331B334C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{229F0C9E-9D07-443F-9EE2-096331B334C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6B6C5E23-166B-4BD3-9562-B2ECB606874A}
+	EndGlobalSection
+EndGlobal

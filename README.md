@@ -1,6 +1,6 @@
 # Chapa.NET
-[![NuGet version (Krane)](https://img.shields.io/nuget/v/Krane.svg)](https://www.nuget.org/packages/Krane)
-[![GitHub](https://img.shields.io/github/license/Ker-Verse/Krane)](https://www.gnu.org/licenses/gpl-3.0.txt)
+[![NuGet version (Krane)](https://img.shields.io/nuget/v/Chapa.NET.svg)](https://www.nuget.org/packages/Chapa.NET)
+[![GitHub](https://img.shields.io/github/license/kerodkibatu/chapa.net)](https://www.gnu.org/licenses/gpl-3.0.txt)
 
 # Chapa
 

@@ -35,9 +35,6 @@ var Result = await chapa.Request(Request);
 //Print out the checkout link
 Console.WriteLine(Result.Urls?.CheckoutUrl);
 
-//Wait For 1min
-Thread.Sleep(TimeSpan.FromMinutes(1));
-
 //Verify Transaction
 Console.WriteLine(chapa.Verify(ID));
 ```

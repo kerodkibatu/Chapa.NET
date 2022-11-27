@@ -1,6 +1,5 @@
 ﻿//Import Chapa.NET
 using ChapaNET;
-using Newtonsoft.Json;
 
 //Initialize your Chapa Instance
 Chapa chapa = new("CHASECK_TEST-Y8X7lsLcH4QY5yr2OM7kJ1bMe1qE7o9O");

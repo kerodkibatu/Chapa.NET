@@ -14,13 +14,15 @@ var request = new ChapaRequest(
     , first_name: "Abebe"
     , last_name: "Bikila"
     , tx_ref: ID
-    , customization: RequestCustomization.Create("Hi!")
+    , customization: RequestCustomization.None
     , return_url: "https://www.google.com");
 
 Console.WriteLine(request);
 
 //Process the request and get a response asynchronously
 var result = chapa.Request(request);
+
+Console.WriteLine("\n-----Response-----");
 
 //Print out the checkout link
 Console.WriteLine(result);

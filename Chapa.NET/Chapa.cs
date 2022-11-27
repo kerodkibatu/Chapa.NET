@@ -45,11 +45,11 @@ public class Chapa
                 .AddParameter("tx_ref", chapaReq.TransactionReference)
                 .AddParameter("currency", chapaReq.Currency);
         if (chapaReq.CustomTitle is not null)
-            request.AddBody($"customization[title] = {chapaReq.CustomTitle}");
+            request.AddParameter($"customization[title]",chapaReq.CustomTitle);
         if (chapaReq.CustomDescription is not null)
-            request.AddBody($"customization[description] = {chapaReq.CustomDescription}");
+            request.AddParameter($"customization[description]",chapaReq.CustomDescription);
         if (chapaReq.CustomLogo is not null)
-            request.AddBody($"customization[logo] = {chapaReq.CustomLogo}");
+            request.AddParameter($"customization[logo]",chapaReq.CustomLogo);
         if (chapaReq.CallbackUrl is not null)
             request.AddParameter("callback_url", chapaReq.CallbackUrl);
         if (chapaReq.ReturnUrl is not null)

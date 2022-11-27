@@ -14,15 +14,14 @@ public class Chapa
         Config = new() { API_SECRET = SECRET_KEY };
         Client = new RestClient(ChapaConfig.BASE_PATH)
             .AddDefaultHeader(ChapaConfig.AUTH_HEADER, "Bearer " + Config.API_SECRET)
-            .UseJson()
             .UseNewtonsoftJson();
     }
 
     public ChapaResponse Request(ChapaRequest chapaRequest)
     {
         var restRequest = MakeRestRequest(chapaRequest);
-        var response = Client.Post<ChapaResponse>(restRequest);
-        return response!;
+        var response = Client.Post(restRequest);
+        return new ChapaResponse();
     }
     public async Task<ChapaResponse> RequestAsync(ChapaRequest chapaReq)
     {
@@ -48,33 +47,14 @@ public class Chapa
         if (chapaReq.CustomTitle is not null)
             request.AddBody($"customization[title] = {chapaReq.CustomTitle}");
         if (chapaReq.CustomDescription is not null)
-            request.AddParameter("customization[description]", chapaReq.CustomDescription);
+            request.AddBody($"customization[description] = {chapaReq.CustomDescription}");
         if (chapaReq.CustomLogo is not null)
-            request.AddParameter("customization[logo]", chapaReq.CustomLogo);
+            request.AddBody($"customization[logo] = {chapaReq.CustomLogo}");
         if (chapaReq.CallbackUrl is not null)
             request.AddParameter("callback_url", chapaReq.CallbackUrl);
         if (chapaReq.ReturnUrl is not null)
             request.AddParameter("return_url", chapaReq.ReturnUrl);
         return request;
     }
-    /// <param name="chapaRequest"></param>
-    /// <summary>
-    /// Makes a request to the chapa api using information from <paramref name="chapaRequest"/>
-    /// <code>
-    /// Example Usage:
-    /// var chapa = new <see cref="Chapa"/>("*Your-API-Key*");
-    /// string ID = <see cref="GetUniqueTransactionRef()"/>;
-    /// 
-    /// var request = new <see cref="ChapaRequest"/>(
-    ///     amount: 100
-    ///     , email: "abebebikila@gmail.com"
-    ///     , first_name: "Abebe"
-    ///     , last_name: "Bikila"
-    ///     , tx_ref: ID);
-    /// 
-    /// var Result = chapa.Request(request);
-    /// </code>
-    /// </summary>
-    /// <returns>The response in the form of a <see cref="ChapaResponse"/> object</returns>
 }
 

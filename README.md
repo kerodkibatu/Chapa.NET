@@ -2,7 +2,7 @@
 [![NuGet version (Krane)](https://img.shields.io/nuget/v/Chapa.NET.svg)](https://www.nuget.org/packages/Chapa.NET)
 [![GitHub](https://img.shields.io/github/license/kerodkibatu/chapa.net)](https://www.gnu.org/licenses/gpl-3.0.txt)
 
-# Chapa
+# What is Chapa?
 
 Chapa is an Ethiopian Financial Service and Data Engineering Company. The inevitable increase in global trade which has been visibly troubled by inconvenient payment methods served as the strongest initiative behind the establishment of Chapa.
 

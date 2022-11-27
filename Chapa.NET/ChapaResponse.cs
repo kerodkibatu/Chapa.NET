@@ -10,12 +10,11 @@ public class ChapaResponse
     public string? Status { get; }
     [JsonProperty("data")]
     ResponseUrls? Urls { get; }
-    
+
+
     public string? CheckoutUrl => Urls?.CheckoutUrl;
-    public override string ToString()
-    {
-        return JsonConvert.SerializeObject(this);
-    }
+    public override string ToString() => JsonConvert.SerializeObject(this);
+    
     class ResponseUrls
     {
         [JsonProperty("checkout_url")]

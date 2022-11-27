@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ChapaNET;
 
@@ -11,19 +12,21 @@ public class ChapaRequest
     public string LastName { get; set; }
     public string TransactionReference { get; set; }
     public string? CallbackUrl { get; set; }
-    
-    public string? ReturnUrl 
-    { 
-        get{
-            if (returnUrl is not  null && (!returnUrl.StartsWith("https://") && !returnUrl.StartsWith("http://")))
+
+    public string? ReturnUrl
+    {
+        get
+        {
+            if (returnUrl is not null && (!returnUrl.StartsWith("https://") && !returnUrl.StartsWith("http://")))
             {
-                returnUrl = "http://"+returnUrl;
+                returnUrl = "http://" + returnUrl;
             }
             return returnUrl;
-        } 
-        set {
+        }
+        set
+        {
             returnUrl = value;
-        } 
+        }
     }
 
     string? returnUrl;
@@ -35,12 +38,11 @@ public class ChapaRequest
     public ChapaRequest(double amount, string email
         , string first_name, string last_name
         , string tx_ref
-        , string currency = "ETB"
+        , RequestCustomization customization
         , string? callback_url = null
         , string? return_url = null
-        , string? customTitle = null
-        , string? customDescription = null
-        , string? customLogo = null)
+        , string currency = "ETB"
+        )
     {
         Amount = amount;
         Currency = currency;
@@ -50,9 +52,26 @@ public class ChapaRequest
         TransactionReference = tx_ref;
         CallbackUrl = callback_url;
         ReturnUrl = return_url;
-        CustomTitle = customTitle;
-        CustomDescription = customDescription;
-        CustomLogo = customLogo;
+        CustomTitle = customization.Title;
+        CustomDescription = customization.Description;
+        CustomLogo = customization.Logo;
     }
-    
+    public override string ToString()
+    {
+        return JsonConvert.SerializeObject(this);
+    }
+}
+public class RequestCustomization
+{
+    public string? Title { get; set; }
+    public string? Description { get; set; }
+    public string? Logo { get; set; }
+    public RequestCustomization(string? title = null, string? description = null, string? logo = null)
+    {
+        Title = title;
+        Description = description;
+        Logo = logo;
+    }
+    public static RequestCustomization Create(string? title = null, string? description = null, string? logo = null) => new(title, description, logo);
+    public static RequestCustomization None = new();
 }

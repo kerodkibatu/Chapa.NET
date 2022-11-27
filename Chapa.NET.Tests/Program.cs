@@ -2,30 +2,31 @@
 using ChapaNET;
 
 //Initialize your Chapa Instance
-Chapa chapa = new("CHASECK_TEST-Y8X7lsLcH4QY5yr2OM7kJ1bMe1qE7o9O");
+Chapa chapa = new("CHASECK_TEST-JY0ePBSclgj9KQJjjbb0vJD2ixpyI2KI");
 
 //Get a unique transaction ID
 var ID = Chapa.GetUniqueTransactionRef();
 
 //Make a request
 var request = new ChapaRequest(
-    amount: 30.52
+      amount: 30.52
     , email: "abebebikila@gmail.com"
     , first_name: "Abebe"
     , last_name: "Bikila"
     , tx_ref: ID
-    , return_url: "google.com");
+    , customization: RequestCustomization.Create("Hi!")
+    , return_url: "https://www.google.com");
+
+Console.WriteLine(request);
 
 //Process the request and get a response asynchronously
-var Result = chapa.Request(request);
-
+var result = chapa.Request(request);
 
 //Print out the checkout link
-Console.WriteLine(Result.CheckoutUrl);
+Console.WriteLine(result);
 
 //Wait For 30sec
 await Task.Delay(TimeSpan.FromSeconds(30));
-
 
 //Verify Transaction
 Console.WriteLine(chapa.Verify(ID));

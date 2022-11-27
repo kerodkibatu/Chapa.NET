@@ -20,7 +20,8 @@ public class Chapa
 
     public ChapaResponse Request(ChapaRequest chapaRequest)
     {
-        var response = Client.Post<ChapaResponse>(MakeRestRequest(chapaRequest));
+        var restRequest = MakeRestRequest(chapaRequest);
+        var response = Client.Post<ChapaResponse>(restRequest);
         return response!;
     }
     public async Task<ChapaResponse> RequestAsync(ChapaRequest chapaReq)
@@ -45,7 +46,7 @@ public class Chapa
                 .AddParameter("tx_ref", chapaReq.TransactionReference)
                 .AddParameter("currency", chapaReq.Currency);
         if (chapaReq.CustomTitle is not null)
-            request.AddParameter("customization[title]", chapaReq.CustomTitle);
+            request.AddBody($"customization[title] = {chapaReq.CustomTitle}");
         if (chapaReq.CustomDescription is not null)
             request.AddParameter("customization[description]", chapaReq.CustomDescription);
         if (chapaReq.CustomLogo is not null)

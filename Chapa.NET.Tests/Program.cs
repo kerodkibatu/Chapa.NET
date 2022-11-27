@@ -1,23 +1,32 @@
 ﻿//Import Chapa.NET
 using ChapaNET;
+using Newtonsoft.Json;
 
 //Initialize your Chapa Instance
-Chapa chapa = new Chapa("CHASECK-*YOUR-API-KEY*");
+Chapa chapa = new("CHASECK_TEST-Y8X7lsLcH4QY5yr2OM7kJ1bMe1qE7o9O");
 
 //Get a unique transaction ID
-var ID = Guid.NewGuid().ToString();
+var ID = Chapa.GetUniqueTransactionRef();
 
 //Make a request
-var Request = new ChapaRequest(amount: 30.52, email: "abebebikila@gmail.com", first_name: "Abebe", last_name: "Bikila", tx_ref: ID);
+var request = new ChapaRequest(
+    amount: 30.52
+    , email: "abebebikila@gmail.com"
+    , first_name: "Abebe"
+    , last_name: "Bikila"
+    , tx_ref: ID
+    , return_url: "google.com");
 
 //Process the request and get a response asynchronously
-var Result = await chapa.Request(Request);
+var Result = chapa.Request(request);
+
 
 //Print out the checkout link
-Console.WriteLine(Result.Urls?.CheckoutUrl);
+Console.WriteLine(Result.CheckoutUrl);
 
-//Wait For 1min
-Thread.Sleep(TimeSpan.FromMinutes(1));
+//Wait For 30sec
+await Task.Delay(TimeSpan.FromSeconds(30));
+
 
 //Verify Transaction
 Console.WriteLine(chapa.Verify(ID));

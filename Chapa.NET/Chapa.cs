@@ -20,8 +20,8 @@ public class Chapa
     public ChapaResponse Request(ChapaRequest chapaRequest)
     {
         var restRequest = MakeRestRequest(chapaRequest);
-        var response = Client.Post(restRequest);
-        return new ChapaResponse();
+        var response = Client.Post<ChapaResponse>(restRequest);
+        return response!;
     }
     public async Task<ChapaResponse> RequestAsync(ChapaRequest chapaReq)
     {

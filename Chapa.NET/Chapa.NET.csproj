@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <PackageId>Chapa.NET</PackageId>
     <Title>Chapa.NET</Title>
-    <Version>1.0.5</Version>
+    <Version>1.1.5</Version>
     <Authors>Kerod Kibatu</Authors>
     <Company>KerVerse</Company>
     <Description>A Simple,Fast and Secure SDK for Chapa Financial</Description>

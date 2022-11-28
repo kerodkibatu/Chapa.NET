@@ -73,7 +73,7 @@ public class Chapa
     {
         public string? message { get; set; }
 
-        public IEnumerable<Bank> data { get; set; }
+        public IEnumerable<Bank>? data { get; set; }
     }
 }
 public class Bank

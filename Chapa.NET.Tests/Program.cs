@@ -30,12 +30,23 @@ var Request = new ChapaRequest(
 //Process the request and get a response asynchronously
 var Result = await chapa.RequestAsync(Request);
 
+
+
 //Print out the checkout link
 Console.WriteLine("Checkout Url:"+Result.CheckoutUrl);
 
+
+
 //Give Time To Complete Transaction
+int timeToWait = 60;
 Console.WriteLine("-----Waiting For Completion------");
-await Task.Delay(TimeSpan.FromMinutes(1));
+var initPos = Console.GetCursorPosition();
+for (int i = timeToWait - 1; i >= 0; i--)
+{
+    Console.SetCursorPosition(initPos.Left,initPos.Top);
+    await Task.Delay(1000);
+    Console.WriteLine($"{i}s till validation");
+}
 
 
 //Verify Transaction - temporarly not working

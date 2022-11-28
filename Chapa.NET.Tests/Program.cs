@@ -38,7 +38,7 @@ Console.WriteLine("Checkout Url:"+Result.Urls?.CheckoutUrl);
 Console.WriteLine("-----Waiting For 30sec------");
 await Task.Delay(TimeSpan.FromSeconds(5));
 
-//Verify Transaction
+//Verify Transaction - temporarly not working
 Console.WriteLine("-----Verifying Transaction------");
 Validity isValid = await chapa.VerifyAsync(ID);
 Console.WriteLine("Validity: "+isValid);

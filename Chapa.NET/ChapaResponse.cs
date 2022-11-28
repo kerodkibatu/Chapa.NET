@@ -4,19 +4,8 @@ namespace ChapaNET;
 
 public class ChapaResponse
 {
-    [JsonProperty("message")]
-    public string? Message { get; }
-    [JsonProperty("status")]
-    public string? Status { get; }
-    [JsonProperty("data")]
-    ResponseUrls? Urls { get; }
-
-    public string? CheckoutUrl => Urls?.CheckoutUrl;
+    public string? Message { get; set; }
+    public string? Status { get; set; }
+    public string? CheckoutUrl { get; set; }
     public override string ToString() => JsonConvert.SerializeObject(this);
-    
-    class ResponseUrls
-    {
-        [JsonProperty("checkout_url")]
-        public string? CheckoutUrl { get; set; }
-    }
 }

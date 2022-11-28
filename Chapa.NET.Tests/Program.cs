@@ -2,7 +2,7 @@
 using ChapaNET;
 
 //Initialize your Chapa Instance
-Chapa chapa = new("**Your API KEY");
+Chapa chapa = new("CHASECK_TEST-JY0ePBSclgj9KQJjjbb0vJD2ixpyI2KI");
 
 //Get a unique transaction ID
 var ID = Chapa.GetUniqueRef();
@@ -10,7 +10,7 @@ var ID = Chapa.GetUniqueRef();
 
 //Get Banks
 Console.WriteLine("-----Fetching Banks------");
-
+await chapa.GetBanksAsync();
 var banks = await chapa.GetBanksAsync();
 Console.WriteLine(string.Join(',',banks.AsEnumerable()));
 
@@ -33,10 +33,6 @@ var Result = await chapa.RequestAsync(Request);
 //Print out the checkout link
 Console.WriteLine("Checkout Url:"+Result.CheckoutUrl);
 
-
-//Wait For 1min
-Console.WriteLine("-----Waiting For 30sec------");
-await Task.Delay(TimeSpan.FromSeconds(5));
 
 //Verify Transaction - temporarly not working
 Console.WriteLine("-----Verifying Transaction------");

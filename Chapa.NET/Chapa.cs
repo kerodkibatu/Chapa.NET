@@ -6,9 +6,8 @@ namespace ChapaNET;
 public enum Validity { Valid, Invalid }
 public class Chapa
 {
-    public static string GetUniqueTransactionRef() => Guid.NewGuid().ToString();
     ChapaConfig Config { get; set; }
-    public static string GetUniqueRef() => Guid.NewGuid().ToString();
+    public static string GetUniqueRef() => "tx" + DateTime.Now.ToBinary();
     public Chapa(string SECRET_KEY)
     {
         Config = new() { API_SECRET = SECRET_KEY };
@@ -41,23 +40,32 @@ public class Chapa
         if (request.CustomLogo != null)
             reqDict.Add("customization[logo]", request.CustomLogo);
 
-        var response = await "https://api.chapa.co/v1"
+        var response = await "https://api.chapa.co/v1/transaction/initialize"
             .WithHeader(ChapaConfig.AUTH_HEADER, $"Bearer {Config.API_SECRET}")
-            .AppendPathSegments("transaction", "initialize")
-            .PostJsonAsync(
-                reqDict
-            )
-            .ReceiveJson<ChapaResponse>();
-        return response;
+            .PostJsonAsync(reqDict)
+            .ReceiveJson();
+        
+        return new() 
+        {
+            Status = response.status,
+            Message = response.message,
+            CheckoutUrl = response.data.checkout_url
+        };
     }
     public async Task<Validity> VerifyAsync(string txRef)
     {
-        return
-            (await "https://api.chapa.co/v1"
-            .WithHeader(ChapaConfig.AUTH_HEADER, $"Bearer {Config.API_SECRET}")
-            .AppendPathSegments("transaction", "verify", txRef)
-            .GetAsync())
-            .StatusCode == (int)System.Net.HttpStatusCode.OK ? Validity.Valid : Validity.Invalid;
+        Validity validity = Validity.Valid;
+        try
+        {
+            await $"https://api.chapa.co/v1/transaction/verify/{txRef}"
+                        .WithHeader(ChapaConfig.AUTH_HEADER, $"Bearer {Config.API_SECRET}")
+                        .GetAsync();
+        }
+        catch (Exception)
+        {
+            validity = Validity.Invalid;
+        }
+        return validity;
     }
     public async Task<IEnumerable<Bank>> GetBanksAsync()
     {

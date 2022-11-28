@@ -65,9 +65,9 @@ public class Chapa
             await "https://api.chapa.co/v1"
                 .WithHeader(ChapaConfig.AUTH_HEADER, $"Bearer {Config.API_SECRET}")
                 .AppendPathSegment("banks")
-                .GetAsync();
+                .GetJsonAsync<BankResponse>();
 
-        return JsonConvert.DeserializeObject<BankResponse>(await response.GetStringAsync())!.data.DistinctBy(x => x.Name);
+        return response.data!;
     }
     class BankResponse
     {

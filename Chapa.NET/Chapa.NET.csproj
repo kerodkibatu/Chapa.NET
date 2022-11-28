@@ -6,10 +6,10 @@
     <Nullable>enable</Nullable>
     <PackageId>Chapa.NET</PackageId>
     <Title>Chapa.NET</Title>
-    <Version>1.0.5</Version>
+    <Version>1.1.03</Version>
     <Authors>Kerod Kibatu</Authors>
     <Company>KerVerse</Company>
-    <Description>A Simple,Fast and Secure SDK for Chapa Financial</Description>
+    <Description>A Simple,Fast and Secure Dotnet SDK for Chapa Financial</Description>
     <PackageIcon>chapalogo.png</PackageIcon>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/kerodkibatu/Chapa.NET</RepositoryUrl>

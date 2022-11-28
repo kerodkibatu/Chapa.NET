@@ -1,4 +1,4 @@
-﻿namespace ChapaNET;
+namespace ChapaNET;
 
 public class ChapaRequest
 {

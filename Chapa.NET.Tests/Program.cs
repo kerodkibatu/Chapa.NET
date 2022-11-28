@@ -1,8 +1,8 @@
-﻿//Import Chapa.NET
+//Import Chapa.NET
 using ChapaNET;
 
 //Initialize your Chapa Instance
-Chapa chapa = new("CHASECK_TEST-JY0ePBSclgj9KQJjjbb0vJD2ixpyI2KI");
+Chapa chapa = new("**Your API KEY");
 
 //Get a unique transaction ID
 var ID = Chapa.GetUniqueRef();

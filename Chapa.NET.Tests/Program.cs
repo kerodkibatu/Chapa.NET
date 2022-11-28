@@ -33,6 +33,10 @@ var Result = await chapa.RequestAsync(Request);
 //Print out the checkout link
 Console.WriteLine("Checkout Url:"+Result.CheckoutUrl);
 
+//Give Time To Complete Transaction
+Console.WriteLine("-----Waiting For Completion------");
+await Task.Delay(TimeSpan.FromMinutes(1));
+
 
 //Verify Transaction - temporarly not working
 Console.WriteLine("-----Verifying Transaction------");

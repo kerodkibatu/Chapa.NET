@@ -101,7 +101,12 @@ public class Bank
     }
     public override string ToString()
     {
-        return $"{Name}";
+        return 
+        $@"ID: {ID}
+Name: {Name}
+Swift Code: {SwiftCode}
+AcctLen: {AccLen}
+Country ID: {CountryID}";
     }
 }
 

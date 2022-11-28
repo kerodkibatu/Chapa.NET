@@ -12,7 +12,7 @@ var ID = Chapa.GetUniqueRef();
 Console.WriteLine("-----Fetching Banks------");
 await chapa.GetBanksAsync();
 var banks = await chapa.GetBanksAsync();
-Console.WriteLine(string.Join(',',banks.AsEnumerable()));
+Console.WriteLine(string.Join("\n------",banks.AsEnumerable()));
 
 //Make a request
 
@@ -40,12 +40,12 @@ Console.WriteLine("Checkout Url:"+Result.CheckoutUrl);
 //Give Time To Complete Transaction
 int timeToWait = 60;
 Console.WriteLine("-----Waiting For Completion------");
-var initPos = Console.GetCursorPosition();
+var rowInit = Console.CursorTop;
 for (int i = timeToWait - 1; i >= 0; i--)
 {
-    Console.SetCursorPosition(initPos.Left,initPos.Top);
-    await Task.Delay(1000);
     Console.WriteLine($"{i}s till validation");
+    Console.CursorTop = rowInit-1;
+    await Task.Delay(1000);
 }
 
 

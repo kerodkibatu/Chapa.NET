@@ -31,7 +31,7 @@ var Request = new ChapaRequest(
 var Result = await chapa.RequestAsync(Request);
 
 //Print out the checkout link
-Console.WriteLine("Checkout Url:"+Result.Urls?.CheckoutUrl);
+Console.WriteLine("Checkout Url:"+Result.CheckoutUrl);
 
 
 //Wait For 1min

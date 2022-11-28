@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <PackageId>Chapa.NET</PackageId>
     <Title>Chapa.NET</Title>
-    <Version>1.1.03</Version>
+    <Version>1.1.5</Version>
     <Authors>Kerod Kibatu</Authors>
     <Company>KerVerse</Company>
     <Description>A Simple,Fast and Secure Dotnet SDK for Chapa Financial</Description>
@@ -17,9 +17,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="RestSharp" Version="108.0.1" />
-    <PackageReference Include="RestSharp.Serializers.NewtonsoftJson" Version="108.0.1" />
+    <None Include="..\Resources\chapalogo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Flurl" Version="3.0.6" />
+    <PackageReference Include="Flurl.Http" Version="3.2.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 
 </Project>

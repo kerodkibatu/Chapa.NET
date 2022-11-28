@@ -11,7 +11,6 @@ public class ChapaResponse
     [JsonProperty("data")]
     ResponseUrls? Urls { get; }
 
-
     public string? CheckoutUrl => Urls?.CheckoutUrl;
     public override string ToString() => JsonConvert.SerializeObject(this);
     
@@ -21,4 +20,3 @@ public class ChapaResponse
         public string? CheckoutUrl { get; set; }
     }
 }
-

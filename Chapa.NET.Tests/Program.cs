@@ -2,7 +2,8 @@
 using ChapaNET;
 
 //Initialize your Chapa Instance
-Chapa chapa = new("CHASECK_TEST-JY0ePBSclgj9KQJjjbb0vJD2ixpyI2KI");
+string APIKEY = "YOUR API KEY";
+Chapa chapa = new(APIKEY);
 
 //Get a unique transaction ID
 var ID = Chapa.GetUniqueRef();
@@ -18,12 +19,11 @@ Console.WriteLine(string.Join("\n------",banks.AsEnumerable()));
 
 Console.WriteLine("-----Making A Request------");
 var Request = new ChapaRequest(
-    amount: 3500,
-    email: "abebebikila@gmail.com",
-    firstName: "Abebe",
-    lastName: "Bikila",
-    tx_ref: ID,
-    callback_url: "https://google.com"
+    amount: 8000,
+    email: "kibatuwsenbet101@gmail.com",
+    firstName: "Kibatu",
+    lastName: "W/Senbet",
+    tx_ref: ID
     );
 
 

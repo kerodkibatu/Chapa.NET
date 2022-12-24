@@ -3,11 +3,12 @@ namespace ChapaNET;
 public class ChapaRequest
 {
     public double Amount { get; set; }
-    public string Currency { get; set; }
     public string Email { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string TransactionReference { get; set; }
+    public string? PhoneNo { get; set; }
+    public string? Currency { get; set; }
     public string? CallbackUrl { get; set; }
     public string? ReturnUrl { get; set; }
     public string? CustomTitle { get; set; }
@@ -18,7 +19,8 @@ public class ChapaRequest
         , string email
         , string firstName, string lastName
         , string tx_ref
-        , string currency = "ETB"
+        , string? phoneNo = null
+        , string? currency = "ETB"
         , string? callback_url = null
         , string? return_url = null
         , string? customTitle = null
@@ -30,6 +32,7 @@ public class ChapaRequest
         Email = email;
         FirstName = firstName;
         LastName = lastName;
+        PhoneNo = phoneNo;
         TransactionReference = tx_ref;
         CallbackUrl = callback_url;
         ReturnUrl = return_url;

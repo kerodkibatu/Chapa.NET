@@ -1,13 +1,12 @@
 using Flurl;
 using Flurl.Http;
-using Newtonsoft.Json;
 
 namespace ChapaNET;
 public enum Validity { Valid, Invalid }
 public class Chapa
 {
     ChapaConfig Config { get; set; }
-    public static string GetUniqueRef() => "tx" + DateTime.Now.ToBinary();
+    public static string GetUniqueRef() => "tx" + DateTime.Now.Ticks;
     public Chapa(string SECRET_KEY)
     {
         Config = new() { API_SECRET = SECRET_KEY };
@@ -19,7 +18,7 @@ public class Chapa
     public Chapa(ChapaConfig config) : this(config.API_SECRET) { }
     public async Task<ChapaResponse> RequestAsync(ChapaRequest request)
     {
-        var reqDict = new Dictionary<string, string>()
+        var reqDict = new Dictionary<string, string?>()
         {
             {"email",request.Email},
             {"amount",request.Amount.ToString()},
@@ -28,7 +27,8 @@ public class Chapa
             {"tx_ref",request.TransactionReference},
             {"currency",request.Currency},
         };
-
+        if(request.PhoneNo != null)
+            reqDict.Add("phone_number", request.PhoneNo);
         if (request.CallbackUrl != null)
             reqDict.Add("callback_url", request.CallbackUrl);
         if (request.ReturnUrl != null)

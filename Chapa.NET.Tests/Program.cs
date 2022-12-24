@@ -2,7 +2,7 @@
 using ChapaNET;
 
 //Initialize your Chapa Instance
-string APIKEY = "YOUR API KEY";
+string APIKEY = "CHASECK_TEST-apiKey";
 Chapa chapa = new(APIKEY);
 
 //Get a unique transaction ID
@@ -10,20 +10,21 @@ var ID = Chapa.GetUniqueRef();
 
 
 //Get Banks
-Console.WriteLine("-----Fetching Banks------");
-await chapa.GetBanksAsync();
-var banks = await chapa.GetBanksAsync();
-Console.WriteLine(string.Join("\n------",banks.AsEnumerable()));
+//Console.WriteLine("-----Fetching Banks------");
+//await chapa.GetBanksAsync();
+//var banks = await chapa.GetBanksAsync();
+//Console.WriteLine(string.Join("\n------",banks.AsEnumerable()));
 
 //Make a request
 
 Console.WriteLine("-----Making A Request------");
 var Request = new ChapaRequest(
     amount: 8000,
-    email: "kibatuwsenbet101@gmail.com",
-    firstName: "Kibatu",
-    lastName: "W/Senbet",
-    tx_ref: ID
+    email: "testemail@gmail.com",
+    firstName: "test",
+    lastName: "test",
+    tx_ref: ID,
+    phoneNo: "0911111111"
     );
 
 
@@ -47,7 +48,6 @@ for (int i = timeToWait - 1; i >= 0; i--)
     Console.CursorTop = rowInit-1;
     await Task.Delay(1000);
 }
-
 
 //Verify Transaction - temporarly not working
 Console.WriteLine("-----Verifying Transaction------");

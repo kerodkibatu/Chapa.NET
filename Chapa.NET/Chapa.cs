@@ -12,6 +12,8 @@ public class Chapa
     public static string GetUniqueRef() => "tx" + DateTime.Now.Ticks;
     public Chapa(string SECRET_KEY)
     {
+        if (SECRET_KEY == null)
+            throw new Exception("Secret Key can't be null");
         Config = new() { API_SECRET = SECRET_KEY };
 
         //Client = new RestClient(ChapaConfig.BASE_PATH)
@@ -47,7 +49,6 @@ public class Chapa
             .WithHeader(ChapaConfig.AUTH_HEADER, $"Bearer {Config.API_SECRET}")
             .PostJsonAsync(reqDict)
             .ReceiveJson();
-
         return new()
         {
             Status = response.status,

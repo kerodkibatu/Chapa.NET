@@ -2,7 +2,7 @@
 using ChapaNET;
 
 //Initialize your Chapa Instance
-string APIKEY = "CHASECK_TEST-JY0ePBSclgj9KQJjjbb0vJD2ixpyI2KI";
+string APIKEY = null;
 Chapa chapa = new(APIKEY);
 
 //Get a unique transaction ID

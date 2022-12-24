@@ -2,7 +2,10 @@ using Flurl;
 using Flurl.Http;
 
 namespace ChapaNET;
-public enum Validity { Valid, Invalid }
+public enum TransactionStatus
+{
+    Completed, Incomplete, Error
+}
 public class Chapa
 {
     ChapaConfig Config { get; set; }
@@ -27,7 +30,7 @@ public class Chapa
             {"tx_ref",request.TransactionReference},
             {"currency",request.Currency},
         };
-        if(request.PhoneNo != null)
+        if (request.PhoneNo != null)
             reqDict.Add("phone_number", request.PhoneNo);
         if (request.CallbackUrl != null)
             reqDict.Add("callback_url", request.CallbackUrl);
@@ -44,32 +47,65 @@ public class Chapa
             .WithHeader(ChapaConfig.AUTH_HEADER, $"Bearer {Config.API_SECRET}")
             .PostJsonAsync(reqDict)
             .ReceiveJson();
-        
-        return new() 
+
+        return new()
         {
             Status = response.status,
             Message = response.message,
             CheckoutUrl = response.data.checkout_url
         };
     }
-    public async Task<Validity> VerifyAsync(string txRef)
+    public class ValidityReport
     {
-        Validity validity = Validity.Valid;
+        public bool IsSuccess => status == "success";
+        public string message { get; set; }
+        public string status { get; set; }
+        public Data data { get; set; }
+        public class Data
+        {
+            public string first_name { get; set; }
+            public string last_name { get; set; }
+            public string email { get; set; }
+            public string currency { get; set; }
+            public int amount { get; set; }
+            public int charge { get; set; }
+            public string mode { get; set; }
+            public string method { get; set; }
+            public string type { get; set; }
+            public string status { get; set; }
+            public string reference { get; set; }
+            public string tx_ref { get; set; }
+            public Customization customization { get; set; }
+            public object meta { get; set; }
+            public DateTime created_at { get; set; }
+            public DateTime updated_at { get; set; }
+        }
+
+        public class Customization
+        {
+            public string title { get; set; }
+            public string description { get; set; }
+            public string logo { get; set; }
+        }
+    }
+    public async Task<ValidityReport?> VerifyAsync(string txRef)
+    {
         try
         {
-            await $"https://api.chapa.co/v1/transaction/verify/{txRef}"
+            var validityResponse = await $"https://api.chapa.co/v1/transaction/verify/{txRef}"
                         .WithHeader(ChapaConfig.AUTH_HEADER, $"Bearer {Config.API_SECRET}")
-                        .GetAsync();
+                        .GetJsonAsync<ValidityReport>();
+            return validityResponse;
         }
         catch (Exception)
         {
-            validity = Validity.Invalid;
+            return null;
         }
-        return validity;
     }
+
     public async Task<IEnumerable<Bank>> GetBanksAsync()
     {
-        var response = 
+        var response =
             await "https://api.chapa.co/v1"
                 .WithHeader(ChapaConfig.AUTH_HEADER, $"Bearer {Config.API_SECRET}")
                 .AppendPathSegment("banks")
@@ -91,7 +127,7 @@ public class Bank
     public string Name;
     public int AccLen;
     public int CountryID;
-    public Bank(string id,string swift, string name,int accLen,int country_id)
+    public Bank(string id, string swift, string name, int accLen, int country_id)
     {
         ID = id;
         SwiftCode = swift;
@@ -101,7 +137,7 @@ public class Bank
     }
     public override string ToString()
     {
-        return 
+        return
         $@"ID: {ID}
 Name: {Name}
 Swift Code: {SwiftCode}

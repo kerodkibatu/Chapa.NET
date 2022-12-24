@@ -2,7 +2,7 @@
 using ChapaNET;
 
 //Initialize your Chapa Instance
-string APIKEY = "CHASECK_TEST-apiKey";
+string APIKEY = "CHASECK_TEST-JY0ePBSclgj9KQJjjbb0vJD2ixpyI2KI";
 Chapa chapa = new(APIKEY);
 
 //Get a unique transaction ID
@@ -34,22 +34,15 @@ var Result = await chapa.RequestAsync(Request);
 
 
 //Print out the checkout link
-Console.WriteLine("Checkout Url:"+Result.CheckoutUrl);
+Console.WriteLine("Checkout Url:" + Result.CheckoutUrl);
 
 
+//Wait for validation
+Console.WriteLine("----Press Any Key To Validate Transaction----");
+Console.ReadKey();
 
-//Give Time To Complete Transaction
-int timeToWait = 60;
-Console.WriteLine("-----Waiting For Completion------");
-var rowInit = Console.CursorTop;
-for (int i = timeToWait - 1; i >= 0; i--)
-{
-    Console.WriteLine($"{i}s till validation");
-    Console.CursorTop = rowInit-1;
-    await Task.Delay(1000);
-}
 
 //Verify Transaction - temporarly not working
 Console.WriteLine("-----Verifying Transaction------");
-Validity isValid = await chapa.VerifyAsync(ID);
-Console.WriteLine("Validity: "+isValid);
+var validity = await chapa.VerifyAsync(ID);
+Console.WriteLine("Validity: " + validity == null?"Error!":validity?.status);

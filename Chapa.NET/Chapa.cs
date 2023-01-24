@@ -68,8 +68,8 @@ public class Chapa
             public string last_name { get; set; }
             public string email { get; set; }
             public string currency { get; set; }
-            public int amount { get; set; }
-            public int charge { get; set; }
+            public double amount { get; set; }
+            public double charge { get; set; }
             public string mode { get; set; }
             public string method { get; set; }
             public string type { get; set; }
